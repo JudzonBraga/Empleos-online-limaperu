@@ -9,59 +9,252 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <div class="logo">✨ Profesionales CV</div>
+        <div class="logo" onclick="mostrarInicio()">Empleos Peru Online</div>
         <ul class="nav-links">
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Profesionales</a></li>
-            <li><a href="#">Empresas</a></li>
-            <li><a href="#">Contacto</a></li>
+            <li id="navInicio" class="active"><a onclick="mostrarInicio()"><span>🏠</span> Inicio</a></li>
+            <li id="navProfesionales"><a onclick="mostrarProfesionales()"><span>👥</span> Profesionales</a></li>
+            <li id="navEmpresas"><a onclick="mostrarEmpresas()"><span>🏢</span> Empresas</a></li>
+            <li><a onclick="scrollToContacto()"><span>📧</span> Contacto</a></li>
         </ul>
     </nav>
 
-    <!-- Slideshow -->
-    <div class="slideshow-container">
-        <img class="slide fade active-slide" src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Profesionales trabajando">
-        <img class="slide fade" src="https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Reunión de negocios">
-        <img class="slide fade" src="https://images.pexels.com/photos/3194519/pexels-photo-3194519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Equipo trabajando">
-    </div>
-
-    <!-- Contenido principal -->
-    <div class="main-container">
-        <!-- Sidebar profesiones con BUSCADOR -->
-        <div class="professions-sidebar">
-            <h3>Profesiones</h3>
-            
-            <div class="profession-search">
-                <input type="text" class="search-input" id="professionSearch" placeholder="🔍 Buscar profesión...">
+    <!-- MAIN CONTAINER 1 (INICIO) -->
+    <div id="mainContainer1" class="main-container1">
+        <div class="split-container" id="splitContainer">
+            <div class="half half-left" id="profesionalSide">
+                <div class="half-content">
+                    <div class="half-icon">👨‍💼</div>
+                    <h2>Soy un Profesional</h2>
+                    <p>Busco nuevas oportunidades laborales para desarrollar mi carrera y crecer profesionalmente.</p>
+                    <button class="btn-select" id="btnProfesional">Ver oportunidades →</button>
+                </div>
             </div>
-            
-            <ul class="professions-list" id="professionsList"></ul>
-        </div>
-
-        <!-- Grid CVs -->
-        <div class="cvs-grid-container">
-            <div class="loading" id="loading">Cargando profesionales...</div>
-            <div class="cvs-grid" id="cvsGrid"></div>
-            
-            <!-- Contenedor de paginación -->
-            <div class="pagination-container" id="paginationContainer"></div>
+            <div class="half half-right" id="empresaSide">
+                <div class="half-content">
+                    <div class="half-icon">🏢</div>
+                    <h2>Soy una Empresa</h2>
+                    <p>Busco profesionales talentosos para unirse a mi equipo y hacer crecer mi organización.</p>
+                    <button class="btn-select" id="btnEmpresa">Ver profesionales →</button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Modal CV -->
+    <!-- MAIN CONTAINER 2 (PROFESIONALES) -->
+    <div id="mainContainer2" class="main-container2 hidden-div">
+        <div class="content-wrapper">
+            <div class="professions-sidebar">
+                <h3>Profesiones</h3>
+                <div class="profession-search"><input type="text" class="search-input" id="professionSearch" placeholder="🔍 Buscar profesión..."></div>
+                <ul class="professions-list" id="professionsList"></ul>
+            </div>
+            <div class="cvs-grid-container">
+                <div class="loading" id="loading">Cargando profesionales...</div>
+                <div class="cvs-grid" id="cvsGrid"></div>
+                <div class="pagination-container" id="paginationContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER 3 (EMPRESAS) -->
+    <div id="mainContainer3" class="main-container3 hidden-div">
+        <div class="brands-grid" id="brandsGrid"></div>
+        <div class="brand-expanded" id="brandExpanded">
+            <button class="close-expanded" id="closeExpanded">&times;</button>
+            <div id="expandedContent"></div>
+        </div>
+    </div>
+
+    <!-- NUEVA SECCIÓN DE CONTACTO CON FORMULARIO -->
+    <div id="contact-section" class="contact-section">
+        <h2>¿Quieres tener tu CV ONLINE? <span class="arrow">👇</span></h2>
+        
+        <form class="contact-form" id="contactForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="nombre">Nombres y Apellidos <span>*</span></label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez García" required>
+                </div>
+                <div class="form-group">
+                    <label for="fechaNacimiento">Fecha de Nacimiento <span>*</span></label>
+                    <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="departamento">Departamento <span>*</span></label>
+                    <select id="departamento" name="departamento" required>
+                        <option value="">Seleccionar departamento</option>
+                        <option value="Amazonas">Amazonas</option>
+                        <option value="Áncash">Áncash</option>
+                        <option value="Apurímac">Apurímac</option>
+                        <option value="Arequipa">Arequipa</option>
+                        <option value="Ayacucho">Ayacucho</option>
+                        <option value="Cajamarca">Cajamarca</option>
+                        <option value="Callao">Callao</option>
+                        <option value="Cusco">Cusco</option>
+                        <option value="Huancavelica">Huancavelica</option>
+                        <option value="Huánuco">Huánuco</option>
+                        <option value="Ica">Ica</option>
+                        <option value="Junín">Junín</option>
+                        <option value="La Libertad">La Libertad</option>
+                        <option value="Lambayeque">Lambayeque</option>
+                        <option value="Lima">Lima</option>
+                        <option value="Loreto">Loreto</option>
+                        <option value="Madre de Dios">Madre de Dios</option>
+                        <option value="Moquegua">Moquegua</option>
+                        <option value="Pasco">Pasco</option>
+                        <option value="Piura">Piura</option>
+                        <option value="Puno">Puno</option>
+                        <option value="San Martín">San Martín</option>
+                        <option value="Tacna">Tacna</option>
+                        <option value="Tumbes">Tumbes</option>
+                        <option value="Ucayali">Ucayali</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="provincia">Provincia <span>*</span></label>
+                    <select id="provincia" name="provincia" required>
+                        <option value="">Primero selecciona un departamento</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="distrito">Distrito <span>*</span></label>
+                    <select id="distrito" name="distrito" required>
+                        <option value="">Primero selecciona una provincia</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="direccion">Dirección <span>*</span></label>
+                    <input type="text" id="direccion" name="direccion" placeholder="Ej: Av. Principal 123, Urbanización..." required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="profesion">Profesión <span>*</span></label>
+                    <select id="profesion" name="profesion" required>
+                        <option value="">Seleccionar profesión</option>
+                        <option value="Administrador de Empresas">Administrador de Empresas</option>
+                        <option value="Arquitecto">Arquitecto</option>
+                        <option value="Abogado">Abogado</option>
+                        <option value="Contador">Contador</option>
+                        <option value="Diseñador Gráfico">Diseñador Gráfico</option>
+                        <option value="Diseñador Web">Diseñador Web</option>
+                        <option value="Economista">Economista</option>
+                        <option value="Enfermero">Enfermero</option>
+                        <option value="Ingeniero Civil">Ingeniero Civil</option>
+                        <option value="Ingeniero de Sistemas">Ingeniero de Sistemas</option>
+                        <option value="Ingeniero Industrial">Ingeniero Industrial</option>
+                        <option value="Ingeniero Mecánico">Ingeniero Mecánico</option>
+                        <option value="Marketing Digital">Marketing Digital</option>
+                        <option value="Médico">Médico</option>
+                        <option value="Periodista">Periodista</option>
+                        <option value="Psicólogo">Psicólogo</option>
+                        <option value="Profesor">Profesor</option>
+                        <option value="Veterinario">Veterinario</option>
+                        <option value="OTRO">OTRO (especificar)</option>
+                    </select>
+                    <div class="other-profession" id="otherProfession">
+                        <input type="text" id="otraProfesion" placeholder="Escribe tu profesión" style="width: 100%;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="gradoAcademico">Grado Académico <span>*</span></label>
+                    <select id="gradoAcademico" name="gradoAcademico" required>
+                        <option value="">Seleccionar grado</option>
+                        <option value="Bachiller">Bachiller</option>
+                        <option value="Técnico">Técnico</option>
+                        <option value="Licenciatura">Licenciatura</option>
+                        <option value="Maestría">Maestría</option>
+                        <option value="Doctorado">Doctorado</option>
+                        <option value="Postgrado">Postgrado</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="disponibilidad">Disponibilidad para laborar <span>*</span></label>
+                    <select id="disponibilidad" name="disponibilidad" required>
+                        <option value="">Seleccionar disponibilidad</option>
+                        <option value="Inmediata">Inmediata</option>
+                        <option value="15 días">15 días</option>
+                        <option value="30 días">30 días</option>
+                        <option value="45 días">45 días</option>
+                        <option value="60 días">60 días</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-whatsapp">
+                <span>📱</span> Enviar solicitud por WhatsApp
+            </button>
+        </form>
+    </div>
+
+    <!-- MODAL CV -->
     <div id="cvModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeModal">&times;</span>
-            <div id="modalContent"></div>
-        </div>
+        <div class="modal-content"><span class="close-modal" id="closeModal">&times;</span><div id="modalContent"></div></div>
     </div>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="footer">
-        <div class="footer-content">
-            <p>© 2024 Directorio Profesional CV</p>
-            <p>Encuentra los mejores profesionales para tu empresa</p>
-            <p style="font-size: 0.9rem; color: #718096;">✨ Diseñado para conectar talento con oportunidades ✨</p>
+        <div class="footer-container">
+            <!-- Grid de 4 columnas -->
+            <div class="footer-grid">
+                <!-- Columna 1: Nombre de empresa + descripción -->
+                <div class="footer-col">
+                    <div class="logo-footer">✨ Empleos Peru Online</div>
+                    <p>Conectamos profesionales talentosos con las mejores oportunidades laborales en Perú. Somos el puente entre el talento y el éxito profesional.</p>
+                    <p style="font-size: 0.85rem; margin-top: 0.5rem;">📍 Lima, Perú</p>
+                </div>
+
+                <!-- Columna 2: Redes Sociales -->
+                <div class="footer-col">
+                    <h4>Síguenos en redes</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">📷</a>
+                        <a href="#" class="social-link">💼</a>
+                        <a href="#" class="social-link">🐦</a>
+                        <a href="#" class="social-link">🎵</a>
+                    </div>
+                </div>
+
+                <!-- Columna 3: Documentos formales -->
+                <div class="footer-col">
+                    <h4>Documentos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">📄 Términos y Condiciones</a></li>
+                        <li><a href="#">🔒 Política de Privacidad</a></li>
+                        <li><a href="#">🍪 Política de Cookies</a></li>
+                        <li><a href="#">⚖️ Aviso Legal</a></li>
+                        <li><a href="#">📋 Libro de Reclamaciones</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 4: Enlaces del navbar -->
+                <div class="footer-col">
+                    <h4>Enlaces rápidos</h4>
+                    <ul class="nav-footer-links">
+                        <li><a href="#"><span>🏠</span> Inicio</a></li>
+                        <li><a href="#"><span>👥</span> Profesionales</a></li>
+                        <li><a href="#"><span>🏢</span> Empresas</a></li>
+                        <li><a href="#"><span>📧</span> Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer inferior (copyright) -->
+            <div class="footer-bottom">
+                <p>© 2024 Empleos Peru Online</p>
+                <p style="font-size: 0.8rem; margin-top: 0.5rem;">✨ Diseñado para conectar talento con oportunidades ✨</p>
+            </div>
         </div>
     </footer>
     <script src="./javascript.js"></script>
