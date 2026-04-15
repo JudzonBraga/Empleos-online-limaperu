@@ -242,17 +242,17 @@
                 <div class="footer-col">
                     <h4>Enlaces rápidos</h4>
                     <ul class="nav-footer-links">
-                        <li><a href="#"><span>🏠</span> Inicio</a></li>
-                        <li><a href="#"><span>👥</span> Profesionales</a></li>
-                        <li><a href="#"><span>🏢</span> Empresas</a></li>
-                        <li><a href="#"><span>📧</span> Contacto</a></li>
+                        <li id="navInicio" class="active"><a onclick="mostrarInicio()"><span>🏠</span> Inicio</a></li>
+                        <li id="navProfesionales"><a onclick="mostrarProfesionales()"><span>👥</span> Profesionales</a></li>
+                        <li id="navEmpresas"><a onclick="mostrarEmpresas()"><span>🏢</span> Empresas</a></li>
+                        <li><a onclick="scrollToContacto()"><span>📧</span> Contacto</a></li>
                     </ul>
                 </div>
             </div>
 
             <!-- Footer inferior (copyright) -->
             <div class="footer-bottom">
-                <p>&copy; 2026 IUXON.COM | Todos los derechos reservados | Lima - Perú</p>
+                <p>&copy; 2026 <a href="https://judzonbraga.github.io/HOME/" style="text-decoration:none;">IUXON.COM </a>| Todos los derechos reservados</p>
                 <p style="font-size: 0.8rem; margin-top: 0.5rem;">✨ Diseñado para conectar talento con oportunidades ✨</p>
             </div>
         </div>
